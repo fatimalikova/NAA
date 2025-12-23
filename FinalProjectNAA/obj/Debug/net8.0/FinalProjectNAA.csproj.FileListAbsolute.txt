@@ -1,0 +1,14 @@
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\obj\Debug\net8.0\FinalProjectNAA.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\obj\Debug\net8.0\FinalProjectNAA.AssemblyInfoInputs.cache
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\obj\Debug\net8.0\FinalProjectNAA.AssemblyInfo.cs
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\obj\Debug\net8.0\FinalProjectNAA.csproj.CoreCompileInputs.cache
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\bin\Debug\net8.0\FinalProjectNAA.exe
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\bin\Debug\net8.0\FinalProjectNAA.deps.json
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\bin\Debug\net8.0\FinalProjectNAA.runtimeconfig.json
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\bin\Debug\net8.0\FinalProjectNAA.dll
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\bin\Debug\net8.0\FinalProjectNAA.pdb
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\obj\Debug\net8.0\FinalProjectNAA.dll
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\obj\Debug\net8.0\refint\FinalProjectNAA.dll
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\obj\Debug\net8.0\FinalProjectNAA.pdb
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\obj\Debug\net8.0\FinalProjectNAA.genruntimeconfig.cache
+C:\Users\fmeli\OneDrive\Desktop\FinalProject\FinalProjectNAA\FinalProjectNAA\obj\Debug\net8.0\ref\FinalProjectNAA.dll
