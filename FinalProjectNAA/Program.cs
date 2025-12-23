@@ -8,6 +8,8 @@ namespace FinalProjectNAA
     {
         static void Main()
         {
+            //frontend hisseden bezi ferqleri var onlara baxib elave ele!!!
+
             Console.Title = "HR MANAGEMENT SYSTEM";
             HumanResourceManager hr = new HumanResourceManager();
 
