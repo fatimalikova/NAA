@@ -1,0 +1,424 @@
+﻿<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <title>HR Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e6f2ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #80cfff;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+            header img {
+                height: 50px;
+            }
+
+            header h1 {
+                margin: 0;
+                font-size: 28px;
+            }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+            nav button {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                background: #0099ff;
+                color: white;
+                font-weight: bold;
+            }
+
+                nav button:hover {
+                    background: #007acc;
+                }
+
+        section {
+            display: none;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+            section.active {
+                display: block;
+            }
+
+        h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            position: relative;
+            padding-left: 10px;
+        }
+
+            label.required::before {
+                content: "*";
+                color: red;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #0099ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background: #007acc;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #cce6ff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://via.placeholder.com/50" alt="Logo">
+        <h1>National Aviation Academy</h1>
+        <h1>|</h1>
+        <h1>HR Management System</h1>
+    </header>
+
+    <nav>
+        <button onclick="showSection('deptSection')">Department Əlavə et</button>
+        <button onclick="showSection('empSection')">İşçi Əlavə et</button>
+        <button onclick="showSection('listSection')">Siyahını göstər</button>
+    </nav>
+
+    <main>
+        <!-- Department Section -->
+        <section id="deptSection" class="active">
+            <div class="card">
+                <h2>Departament əlavə et</h2>
+                <label for="deptName" class="required">Departament adı:</label>
+                <input type="text" id="deptName" required>
+
+                <label for="workerLimit" class="required">Worker Limit:</label>
+                <input type="number" id="workerLimit" required>
+
+                <label for="salaryLimit" class="required">Salary Limit:</label>
+                <input type="number" id="salaryLimit" required>
+
+                <button onclick="addDepartment()">Əlavə et</button>
+            </div>
+        </section>
+
+        <!-- Employee Section -->
+        <section id="empSection">
+            <div class="card">
+                <h2>İşçi əlavə et</h2>
+                <label for="empFullname" class="required">Ad və Soyad:</label>
+                <input type="text" id="empFullname" required>
+
+                <label for="empPosition" class="required">Vəzifə:</label>
+                <input type="text" id="empPosition" required>
+
+                <label for="empSalary" class="required">Maaş:</label>
+                <input type="number" id="empSalary" required>
+
+                <label for="empDept" class="required">Departament:</label>
+                <select id="empDept" required>
+                    <option value="">Seçin...</option>
+                </select>
+
+                <label for="empEmail" class="required">Email:</label>
+                <input type="email" id="empEmail" required>
+
+                <label for="empPhone" class="required">Telefon:</label>
+                <input type="text" id="empPhone" required>
+
+                <label for="empBirthday" class="required">Doğum Tarixi:</label>
+                <input type="date" id="empBirthday" required>
+
+                <label for="empEducation" class="required">Təhsil:</label>
+                <select id="empEducation" required>
+                    <option value="Orta">Orta</option>
+                    <option value="Ali">Ali</option>
+                </select>
+
+                <div id="higherEducationFields" style="display:none; margin-top:10px;">
+                    <label for="universityName" class="required">Universitet:</label>
+                    <select id="universityName">
+                        <option value="Azərbaycan Dövlət İqtisad Universiteti">Azərbaycan Dövlət İqtisad Universiteti</option>
+                        <option value="Azərbaycan Respublikası Prezidenti yanında Dövlət İdarəçilik Akademiyası">Azərbaycan Respublikası Prezidenti yanında Dövlət İdarəçilik Akademiyası</option>
+                        <option value="Azərbaycan Dövlət Dəniz Akademiyası">Azərbaycan Dövlət Dəniz Akademiyası</option>
+                        <option value="Azərbaycan Texniki Universiteti">Azərbaycan Texniki Universiteti</option>
+                        <option value="Azərbaycan Dövlət Neft və Sənaye Universiteti">Azərbaycan Dövlət Neft və Sənaye Universiteti</option>
+                        <option value="ADA Universiteti">ADA Universiteti</option>
+                        <option value="Bakı Ali Neft Məktəbi">Bakı Ali Neft Məktəbi</option>
+                        <option value="Bakı Dövlət Universiteti">Bakı Dövlət Universiteti</option>
+                        <option value="Bakı Mühəndislik Üniversiteti">Bakı Mühəndislik Üniversiteti</option>
+                        <option value="Qafqaz Universiteti">Qafqaz Universiteti</option>
+                        <option value="Azərbaycan Memarlıq və İnşaat Universiteti">Azərbaycan Memarlıq və İnşaat Universiteti</option>
+                        <option value="Naxçıvan Dövlət Universiteti">Naxçıvan Dövlət Universiteti</option>
+                        <option value="Sumqayıt Dövlət Universiteti">Sumqayıt Dövlət Universiteti</option>
+                        <option value="Gəncə Dövlət Universiteti">Gəncə Dövlət Universiteti</option>
+                        <option value="Lənkəran Dövlət Universiteti">Lənkəran Dövlət Universiteti</option>
+                        <option value="Milli Aviasiya Akademiyası">Milli Aviasiya Akademiyası</option>
+                        <option value="Digər">Digər</option>
+                    </select>
+
+                    <label for="faculty" class="required">Fakültə:</label>
+                    <input type="text" id="faculty">
+
+                    <label for="specialty" class="required">İxtisas:</label>
+                    <input type="text" id="specialty">
+
+                    <label for="eduStart" class="required">Başlama ili:</label>
+                    <input type="date" id="eduStart">
+
+                    <label for="eduEnd" class="required">Bitirmə ili:</label>
+                    <input type="date" id="eduEnd">
+                </div>
+
+                <label for="empCert">Sertifikatı var:</label>
+                <select id="empCert">
+                    <option value="false">Xeyr</option>
+                    <option value="true">Bəli</option>
+                </select>
+
+                <label for="empCertExpire" id="certExpireLabel">Sertifikat bitmə tarixi:</label>
+                <input type="date" id="empCertExpire">
+
+                <button onclick="addEmployee()">Əlavə et</button>
+            </div>
+        </section>
+
+        <!-- List Section -->
+        <section id="listSection">
+            <div class="card">
+                <h2>İşçi / Departament Siyahısı</h2>
+                <table id="employeeTable">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Ad və Soyad</th>
+                            <th>Vəzifə</th>
+                            <th>Maaş</th>
+                            <th>Departament</th>
+                            <th>Email</th>
+                            <th>Telefon</th>
+                            <th>Təhsil</th>
+                            <th>Universitet</th>
+                            <th>Fakültə</th>
+                            <th>İxtisas</th>
+                            <th>Təhsil illəri</th>
+                            <th>Sertifikat</th>
+                            <th>Sertifikat Bitis</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script>
+let departments = [];
+let employees = [];
+let employeeCounter = 1000;
+
+const empCert = document.getElementById("empCert");
+const empCertExpire = document.getElementById("empCertExpire");
+const certExpireLabel = document.getElementById("certExpireLabel");
+const empEducation = document.getElementById("empEducation");
+const higherEducationFields = document.getElementById("higherEducationFields");
+const empDept = document.getElementById("empDept");
+
+empCert.addEventListener("change", () => {
+    if(empCert.value === "true"){
+        empCertExpire.style.display = "block";
+        certExpireLabel.style.display = "block";
+    } else {
+        empCertExpire.style.display = "none";
+        certExpireLabel.style.display = "none";
+        empCertExpire.value = "";
+    }
+});
+
+empEducation.addEventListener("change", () => {
+    if(empEducation.value === "Ali"){
+        higherEducationFields.style.display = "block";
+        higherEducationFields.querySelectorAll("input, select").forEach(input => input.required = true);
+    } else {
+        higherEducationFields.style.display = "none";
+        higherEducationFields.querySelectorAll("input, select").forEach(input => {
+            input.required = false;
+            input.value = "";
+        });
+    }
+});
+
+empCert.dispatchEvent(new Event("change"));
+empEducation.dispatchEvent(new Event("change"));
+
+function showSection(sectionId){
+    document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+    document.getElementById(sectionId).classList.add("active");
+}
+
+function addDepartment(){
+    let name = document.getElementById("deptName").value.trim();
+    let workerLimit = document.getElementById("workerLimit").value;
+    let salaryLimit = document.getElementById("salaryLimit").value;
+
+    if(name === "") return alert("Departament adı boş ola bilməz!");
+    departments.push({name, workerLimit, salaryLimit});
+    updateDepartmentOptions();
+    alert(`Departament əlavə olundu: ${name}`);
+
+    document.getElementById("deptName").value = "";
+    document.getElementById("workerLimit").value = "";
+    document.getElementById("salaryLimit").value = "";
+}
+
+function addEmployee(){
+    employeeCounter++;
+    let emp = {
+        No: "MA" + employeeCounter,
+        Fullname: document.getElementById("empFullname").value,
+        Position: document.getElementById("empPosition").value,
+        Salary: document.getElementById("empSalary").value,
+        DepartmentName: document.getElementById("empDept").value,
+        Email: document.getElementById("empEmail").value,
+        Phone: document.getElementById("empPhone").value,
+        Education: document.getElementById("empEducation").value,
+        Birthday: document.getElementById("empBirthday").value,
+        University: document.getElementById("universityName").value,
+        Faculty: document.getElementById("faculty").value,
+        Specialty: document.getElementById("specialty").value,
+        EduStart: document.getElementById("eduStart").value,
+        EduEnd: document.getElementById("eduEnd").value,
+        HasCertificate: document.getElementById("empCert").value === "true",
+        CertificateExpireDate: document.getElementById("empCertExpire").value
+    };
+    if(emp.DepartmentName === ""){
+        return alert("Departament seçin!");
+    }
+    employees.push(emp);
+    renderEmployees();
+    alert(`İşçi əlavə olundu: ${emp.Fullname}`);
+
+    // Form temizleme
+    document.getElementById("empFullname").value = "";
+    document.getElementById("empPosition").value = "";
+    document.getElementById("empSalary").value = "";
+    document.getElementById("empDept").value = "";
+    document.getElementById("empEmail").value = "";
+    document.getElementById("empPhone").value = "";
+    document.getElementById("empBirthday").value = "";
+    document.getElementById("empEducation").value = "Orta";
+    empEducation.dispatchEvent(new Event("change"));
+    document.getElementById("empCert").value = "false";
+    empCert.dispatchEvent(new Event("change"));
+}
+
+function renderEmployees(){
+    let tbody = document.getElementById("employeeTable").querySelector("tbody");
+    tbody.innerHTML = "";
+    const today = new Date();
+
+    employees.forEach(e => {
+        let certText = e.HasCertificate ? "Bəli" : "Xeyr";
+        let certExpireText = "-";
+
+        if(e.HasCertificate && e.CertificateExpireDate){
+            certExpireText = e.CertificateExpireDate;
+            let expireDate = new Date(e.CertificateExpireDate);
+            const diffTime = expireDate - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            if(diffDays <= 15){
+                certExpireText = `<span style="color:red; font-weight:bold;">${certExpireText}</span>`;
+            }
+        }
+
+        let row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${e.No}</td>
+            <td>${e.Fullname}</td>
+            <td>${e.Position}</td>
+            <td>${e.Salary}</td>
+            <td>${e.DepartmentName}</td>
+            <td>${e.Email}</td>
+            <td>${e.Phone}</td>
+            <td>${e.Education}</td>
+            <td>${e.University || "-"}</td>
+            <td>${e.Faculty || "-"}</td>
+            <td>${e.Specialty || "-"}</td>
+            <td>${e.EduStart && e.EduEnd ? e.EduStart + " - " + e.EduEnd : "-"}</td>
+            <td>${certText}</td>
+            <td>${certExpireText}</td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+function updateDepartmentOptions(){
+    empDept.innerHTML = '<option value="">Seçin...</option>';
+    departments.forEach(d => {
+        let option = document.createElement("option");
+        option.value = d.name;
+        option.textContent = d.name;
+        empDept.appendChild(option);
+    });
+}
+    </script>
+
+</body>
+</html>
