@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="az">
 <head>
     <meta charset="UTF-8">
@@ -298,6 +297,7 @@
                             <th>Telefon</th>
                             <th>Təhsil</th>
                             <th>Sertifikat</th>
+                            <th>Sertifikat Bitis</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -323,6 +323,9 @@
                 o.value = o.textContent = d.name;
                 empDept.appendChild(o);
             });
+            deptName.value = "";
+            workerLimit.value = "";
+            salaryLimit.value = "";
         }
 
         empEducation.onchange = () => higherEducationFields.style.display =
@@ -338,50 +341,97 @@
             let div = document.createElement("div");
             div.className = "cert-box";
             div.innerHTML = `
-<select>
-<option>IELTS</option>
-<option>TOEFL</option>
-<option>Cambridge</option>
-<option>Microsoft</option>
-<option>AWS</option>
-</select>
-<input type="date">
-<div class="cert-actions">
-<button type="button" onclick="addCertificate()">➕</button>
-<button type="button" onclick="this.parentElement.parentElement.remove()">🗑️</button>
-</div>`;
+     <select class="cert-name">
+       <option>IELTS</option>
+       <option>TOEFL</option>
+       <option>Cambridge</option>
+       <option>Microsoft</option>
+       <option>AWS</option>
+     </select>
+     <input type="date" class="cert-date">
+     <button type="button" onclick="this.parentElement.remove()">🗑️</button>
+     `;
             certList.appendChild(div);
         }
 
         function addEmployee() {
             counter++;
+
+            // Sertifikatları oxuyuruq
+            let certNames = [];
+            let certDates = [];
+            document.querySelectorAll(".cert-box").forEach(box => {
+                let name = box.querySelector(".cert-name").value;
+                let date = box.querySelector(".cert-date").value;
+                certNames.push(name);
+                certDates.push(date);
+            });
+
             employees.push({
                 no: "MA" + counter,
                 name: empFullname.value,
                 pos: empPosition.value,
+                salary: empSalary.value,
                 dept: empDept.value,
-                cert: empCert.value === "true" ? "Bəli" : "Xeyr"
+                email: empEmail.value,
+                phone: empPhone.value,
+                edu: empEducation.value,
+                certNames: certNames,
+                certDates: certDates
             });
+
             render();
+
+            // Formu təmizləyirik
+            document.querySelectorAll("input").forEach(i => { if (i.type !== "file") i.value = ""; });
+            document.querySelectorAll("select").forEach(s => s.selectedIndex = 0);
+            certList.innerHTML = "";
+            certArea.style.display = "none";
+            higherEducationFields.style.display = "none";
         }
 
         function render() {
             let tb = document.querySelector("#employeeTable tbody");
             tb.innerHTML = "";
+            let today = new Date();
+
             employees.forEach(e => {
+                // Sertifikat adları
+                let certNameText = e.certNames.length ? e.certNames.join(", ") : "-";
+
+                // Sertifikat tarixləri, qırmızı ilə vurğulamaq üçün
+                let certDateText = "-";
+                let certDateHTML = "-";
+                if (e.certDates.length) {
+                    certDateHTML = e.certDates.map(d => {
+                        let end = new Date(d);
+                        let diff = (end - today) / (1000 * 60 * 60 * 24);
+                        if (diff <= 15) {
+                            return `<span style="color:red;font-weight:bold">${d}</span>`;
+                        }
+                        return d;
+                    }).join(", ");
+                }
+
                 tb.innerHTML += `
-<tr>
-<td>${e.no}</td>
-<td>${e.name}</td>
-<td>${e.pos}</td>
-<td>${e.dept}</td>
-<td>${e.cert}</td>
-</tr>`;
+            <tr>
+                <td>${e.no}</td>
+                <td>${e.name}</td>
+                <td>${e.pos}</td>
+                <td>${e.salary}</td>
+                <td>${e.dept}</td>
+                <td>${e.email}</td>
+                <td>${e.phone}</td>
+                <td>${e.edu}</td>
+                <td>${certNameText}</td>
+                <td>${certDateHTML}</td>
+            </tr>`;
             });
         }
+
+
     </script>
+
 
 </body>
 </html>
-
-
